@@ -1,3 +1,66 @@
+/* ===== GLOBAL RESET (safe to keep) ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0e0e0e;
+  color: #ffffff;
+}
+
+/* ===== FULL-WIDTH LOGO BAR ===== */
+.logo-bar {
+  width: 100%;
+  padding: 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Polished glass effect */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.15)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* Subtle separation */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* LOGO IMAGE ITSELF */
+.logo-bar img {
+  width: 100%;
+  max-width: 1400px;   /* controls horizontal span */
+  height: auto;
+  object-fit: contain;
+
+  /* Luxury polish */
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Optional hover effect */
+.logo-bar img:hover {
+  transform: scale(1.01);
+  opacity: 0.95;
+}
+
+/* ===== PAGE CONTENT WRAPPER ===== */
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+
+
+
 * {
   margin: 0;
   padding: 0;
