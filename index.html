@@ -1,3 +1,16 @@
+<script>
+  (function () {
+    const password = "rgl2025"; // CHANGE THIS
+    const userInput = prompt("This site is private. Enter password:");
+
+    if (userInput !== password) {
+      document.documentElement.innerHTML = "";
+      alert("Access denied.");
+    }
+  })();
+</script>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
