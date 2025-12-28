@@ -94,6 +94,106 @@ body::before{
 }
 
 /* =========================
+   TILE (works with BOTH:
+   1) <div class="tile-text">...</div>
+   2) direct <h2> + <p>
+   ========================= */
+.tile{
+  text-decoration: none;
+  color: inherit;
+
+  background: rgba(10,10,10,0.55);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  overflow: hidden;
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+
+  /* boxy tile shape */
+  aspect-ratio: 4 / 3;
+  width: 100%;
+
+  /* IMPORTANT: allow img + text to lay out cleanly */
+  display: flex;
+  flex-direction: column;
+}
+
+.tile:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 18px 55px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255,255,255,0.05) inset;
+}
+
+/* IMAGE: fills top area, no stretching */
+.tile > img{
+  width: 100%;
+  height: 72%;            /* controls how tall the image is inside the tile */
+  object-fit: cover;
+  object-position: center 45%;
+  display: block;
+}
+
+/* TEXT BAR — supports BOTH markup styles */
+.tile-text,
+.tile > h2,
+.tile > p{
+  background: rgba(0,0,0,0.38);
+}
+
+/* If using <div class="tile-text"> */
+.tile-text{
+  padding: 16px 22px 18px;     /* more room so it doesn’t cut off */
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* If using direct <h2> <p> children */
+.tile > h2{
+  padding: 16px 22px 6px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.tile > p{
+  padding: 0 22px 18px;
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1.4;
+
+  /* keeps bar from getting too tall */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* If using .tile-text markup */
+.tile-text h2{
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+.tile-text p{
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =========================
    TILE (clickable <a>)
    Pixel-perfect boxed look
    ========================= */
