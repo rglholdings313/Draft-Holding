@@ -1,6 +1,6 @@
 /* =========================
    RGL HOLDINGS - STYLE.CSS
-   (clean + stable + pixel-perfect tiles)
+   Clean + stable layout
    ========================= */
 
 /* Reset */
@@ -17,6 +17,7 @@ body {
   background-repeat: repeat;
   background-size: 420px 420px;
   background-position: 0 0;
+
   position: relative;
 }
 
@@ -29,14 +30,17 @@ body::before {
   z-index: 0;
 }
 
-/* Keep everything above overlay */
+/* Keep content above overlay */
 .hero,
-.tiles {
+.tiles,
+.sector-wrap {
   position: relative;
   z-index: 1;
 }
 
-/* Header area */
+/* =========================
+   HERO / HEADER
+   ========================= */
 .hero {
   width: min(1100px, 92%);
   margin: 0 auto;
@@ -44,7 +48,6 @@ body::before {
   text-align: center;
 }
 
-/* Small centered logo */
 .logo-bar img {
   width: 54px;
   height: 54px;
@@ -56,7 +59,6 @@ body::before {
   box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
-/* Title + subtitle */
 .title {
   font-size: clamp(30px, 3.2vw, 44px);
   font-weight: 800;
@@ -75,13 +77,12 @@ body::before {
 }
 
 /* =========================
-   HOMEPAGE TILES (FIXED)
+   HOMEPAGE TILES GRID
    ========================= */
-
 .tiles {
   width: min(1200px, 92%);
   margin: 0 auto;
-  padding: 14px 0 60px;
+  padding: 12px 0 60px;
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -108,10 +109,10 @@ body::before {
 
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 
-  /* makes it more “box” than wide rectangle */
+  /* This is the key: stable sizing without “blow up” */
   aspect-ratio: 4 / 3;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto; /* image area + text bar */
 }
 
 .tile:hover {
@@ -122,20 +123,18 @@ body::before {
     0 0 0 1px rgba(255,255,255,0.05) inset;
 }
 
-/* Image area: fills top part without stretching */
+/* Image fills top area perfectly */
 .tile > img {
   width: 100%;
   height: 100%;
-  flex: 1 1 auto;     /* important: image grows but doesn’t force weird height */
-  min-height: 0;      /* important for flex children */
-  object-fit: cover;  /* crop instead of stretch */
-  object-position: center;
+  object-fit: cover;       /* no stretching */
+  object-position: center; /* adjust if needed */
   display: block;
 }
 
 /* Text bar at bottom */
 .tile-text {
-  padding: 14px 18px 16px; /* more room so it doesn’t feel cut off */
+  padding: 14px 18px 16px; /* more breathing room so it doesn't cut */
   background: rgba(0,0,0,0.38);
   border-top: 1px solid rgba(255,255,255,0.06);
 }
@@ -148,14 +147,8 @@ body::before {
 
 .tile-text p {
   font-size: 12px;
-  opacity: 0.92;
+  opacity: 0.9;
   line-height: 1.4;
-
-  /* prevents tall bars; keeps it clean */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* Keyboard focus */
@@ -165,73 +158,71 @@ body::before {
 }
 
 /* =========================
-   PASSWORD GATE
+   PASSWORD GATE (stable)
    ========================= */
-
 .password-gate {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: rgba(0,0,0,0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  color: white;
 }
 
 .password-box {
-  text-align: center;
-  max-width: 320px;
-  width: 92%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  width: min(420px, 92%);
+  padding: 22px;
+  border-radius: 16px;
+  background: rgba(18,18,18,0.75);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.75);
+  text-align: left;
 }
 
 .password-box h2 {
   margin-bottom: 12px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 800;
 }
 
 .password-box input {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
+  color: white;
   outline: none;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .password-box button {
   width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: none;
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: white;
   cursor: pointer;
-  background: white;
-  color: black;
 }
 
-.error {
-  color: #ff6b6b;
-  margin-top: 10px;
-  display: none;
+.password-box button:hover {
+  background: rgba(255,255,255,0.16);
 }
 
 /* =========================
    SECTOR PAGES (gallery)
+   Works with:
+   <section class="gallery"><img ...></section>
+   OR with .card wrappers
    ========================= */
-
-body.sector-page::before {
-  background: rgba(0,0,0,0); /* no tint on sector pages */
-}
+body.sector-page::before { background: rgba(0,0,0,0); }
 
 .sector-wrap{
   width: min(1100px, 92%);
   margin: 0 auto;
   padding: 26px 0 60px;
-  position: relative;
-  z-index: 1;
 }
 
 .back-link{
@@ -256,6 +247,18 @@ body.sector-page::before {
   .gallery{ grid-template-columns: 1fr; }
 }
 
+/* If you DON'T wrap in .card, this still works */
+.gallery > img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  display: block;
+}
+
+/* If you DO wrap in .card, also works */
 .gallery .card{
   background: rgba(10,10,10,0.45);
   border: 1px solid rgba(255,255,255,0.10);
@@ -263,7 +266,6 @@ body.sector-page::before {
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
-
 .gallery .card img{
   width: 100%;
   height: 220px;
