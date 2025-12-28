@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 
   /* Background pattern */
-  background-image: url("assets/background.jpg");
+  background-image: url("assets/images/background.jpg");
   background-repeat: repeat;
   background-size: 420px 420px;
   background-position: 0 0;
