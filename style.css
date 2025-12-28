@@ -171,55 +171,81 @@ body::before {
 /* =========================
    PASSWORD GATE (stable)
    ========================= */
+/* =========================
+   PASSWORD GATE (FINAL)
+   ========================= */
+
 .password-gate {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.95);
+  background: #000; /* FULL BLACK */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
+/* Password container */
 .password-box {
   width: min(420px, 92%);
-  padding: 22px;
+  padding: 30px 32px 34px;
   border-radius: 16px;
-  background: rgba(18,18,18,0.75);
+  background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 18px 55px rgba(0,0,0,0.75);
-  text-align: left;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.9);
+  text-align: center;
 }
 
+/* Logo above title */
+.password-logo {
+  width: 96px;   /* ~1 inch */
+  height: 96px;  /* ~1 inch */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Title */
 .password-box h2 {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-size: 18px;
   font-weight: 800;
+  letter-spacing: 0.3px;
 }
 
+/* Input */
 .password-box input {
   width: 100%;
-  padding: 12px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.35);
-  color: white;
-  outline: none;
-  margin-bottom: 10px;
-}
-
-.password-box button {
-  width: 100%;
-  padding: 12px 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Button */
+.password-box button {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.22);
   background: rgba(255,255,255,0.10);
-  color: white;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
 }
 
 .password-box button:hover {
-  background: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.35);
 }
 
 /* =========================
