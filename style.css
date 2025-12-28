@@ -78,7 +78,7 @@ body::before {
 .tile {
   text-decoration: none;
   color: inherit;
-
+  padding-bottom: 8px;
   background: rgba(10, 10, 10, 0.55);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
@@ -117,21 +117,21 @@ body::before {
 
 /* Text bar at bottom (shorter, cleaner) */
 .tile-text {
-  padding: 10px 14px 12px; /* shortened */
-  background: rgba(0,0,0,0.35);
+  padding: 14px 18px 16px; /* shortened */
+  background: rgba(0,0,0,0.38);
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .tile-text h2 {
   font-size: 15px;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .tile-text p {
   font-size: 12px;
-  opacity: 0.85;
-  line-height: 1.35;
+  opacity: 0.9;
+  line-height: 1.4;
 
   /* keeps the bar from getting tall */
   display: -webkit-box;
