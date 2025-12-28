@@ -94,62 +94,73 @@ body::before {
 }
 
 /* Tile card */
+/* Tile card */
 .tile {
   text-decoration: none;
   color: inherit;
-
-  background: rgba(10, 10, 10, 0.55);
-  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(10, 10, 10, 0.55);
 
-  box-shadow:
-    0 14px 40px rgba(0,0,0,0.55),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55),
+              inset 0 1px 0 rgba(255,255,255,0.06);
 
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-
-  /* This is the key: stable sizing without “blow up” */
-  aspect-ratio: 4 / 3;
-  display: grid;
-  grid-template-rows: 1fr auto; /* image area + text bar */
+  position: relative;          /* KEY for overlay */
+  aspect-ratio: 4 / 3;         /* “boxy” tiles */
 }
 
+/* Hover */
 .tile:hover {
   transform: translateY(-4px);
   border-color: rgba(255,255,255,0.18);
-  box-shadow:
-    0 18px 55px rgba(0,0,0,0.65),
-    0 0 0 1px rgba(255,255,255,0.05) inset;
+  box-shadow: 0 18px 55px rgba(0,0,0,0.65),
+              0 0 0 1px rgba(255,255,255,0.05) inset;
 }
 
-/* Image fills top area perfectly */
+/* Tile image fills the whole card */
 .tile > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* no stretching */
-  object-position: center; /* adjust if needed */
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* Text bar at bottom */
+/* Text overlay bar (always visible on all tiles) */
 .tile-text {
-  padding: 14px 18px 16px; /* more breathing room so it doesn't cut */
-  background: rgba(0,0,0,0.38);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 14px 16px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.20));
+  border-top: 1px solid rgba(255,255,255,0.08);
+
+  z-index: 2;
 }
 
+/* Give the text breathing room */
 .tile-text h2 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
+  line-height: 1.1;
 }
 
 .tile-text p {
   font-size: 12px;
-  opacity: 0.9;
-  line-height: 1.4;
+  opacity: 0.92;
+  margin: 0;
+  line-height: 1.35;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
 
 /* Keyboard focus */
 .tile:focus {
